@@ -1,0 +1,21 @@
+*.sql.gz
+.initializers
+*.pem
+configuration/*
+!configuration/configuration.py
+!configuration/extra.py
+configuration/ldap/*
+!configuration/ldap/extra.py
+!configuration/ldap/ldap_config.py
+!configuration/logging.py
+!configuration/plugins.py
+prometheus.yml
+super-linter.log
+__pycache__
+.vscode/
+docker/configuration/configuration.py
+dist/
+
+# Local Development
+netbox/
+!.vscode/launch.example.json

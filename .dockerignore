@@ -1,0 +1,9 @@
+.git
+.github
+.travis.yml
+env
+build*
+docker-compose.override.yml
+.netbox/.git*
+.netbox/.travis.yml
+.netbox/scripts

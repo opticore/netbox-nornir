@@ -1,0 +1,97 @@
+version: '3.8'
+services:
+  netbox: &netbox
+    image: netbox:latest
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    depends_on:
+    - postgres
+    - redis
+    - redis-cache
+    env_file: env/netbox.env
+    user: 'unit:root'
+    volumes:
+      - ./configuration/configuration.py:/etc/netbox/config/configuration.py
+      - ../:/source/
+      - netbox-media-files:/opt/netbox/netbox/media:z
+
+  netbox-housekeeping:
+    <<: *netbox
+    depends_on:
+    - redis
+    - postgres
+    - netbox
+    command:
+    - /opt/netbox/housekeeping.sh
+
+  # postgres
+  postgres:
+    image: postgres:14-alpine
+    env_file: env/postgres.env
+    volumes:
+    - netbox-postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  # redis
+  redis:
+    image: redis:7-alpine
+    command:
+    - sh
+    - -c # this is to evaluate the $REDIS_PASSWORD from the env
+    - redis-server --appendonly yes --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose
+    env_file: env/redis.env
+    volumes:
+    - netbox-redis-data:/data
+  redis-cache:
+    image: redis:7-alpine
+    command:
+    - sh
+    - -c # this is to evaluate the $REDIS_PASSWORD from the env
+    - redis-server --requirepass $$REDIS_PASSWORD ## $$ because of docker-compose
+    env_file: env/redis-cache.env
+
+  celery_worker:
+    <<: *netbox
+    build:
+      args:
+        PYTHON_VER: "${PYTHON_VER}"
+      context: ../
+      dockerfile: docker/Dockerfile
+    entrypoint: "sh /source/docker/celery/celery_worker_entrypoint.sh"
+    volumes:
+      - ../:/source
+      - ./configuration/configuration.py:/etc/netbox/config/configuration.py
+    depends_on:
+      - postgres
+      - netbox
+      - redis
+    env_file: env/netbox.env
+    tty: true
+
+  celery_beat:
+    <<: *netbox
+    build:
+      args:
+        PYTHON_VER: "${PYTHON_VER}"
+      context: ../
+      dockerfile: docker/Dockerfile
+    entrypoint: "bash /source/docker/celery/celery_beat_entrypoint.sh"
+    volumes:
+      - ../:/source
+      - ./configuration/configuration.py:/etc/netbox/config/configuration.py
+    depends_on:
+      - postgres
+      - netbox
+      - redis
+    env_file: env/netbox.env
+    tty: true
+
+volumes:
+  netbox-media-files:
+    driver: local
+  netbox-postgres-data:
+    driver: local
+  netbox-redis-data:
+    driver: local
