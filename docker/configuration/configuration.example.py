@@ -221,7 +221,6 @@ PAGINATE_COUNT = int(environ.get("PAGINATE_COUNT", 50))
 # Enable installed plugins. Add the name of each plugin to the list.
 # configuration.py
 PLUGINS = [
-    "netbox_celery",
     "netbox_nornir",
 ]
 

@@ -16,9 +16,9 @@ The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. Opticore
 
 Main functions:
 
-  1) Nornir inventory for Netbox ORM
-  2) Generic credentials integrations
-  3) Generic data collection from different device types
+  1. Nornir inventory for Netbox ORM
+  2. Generic credentials integrations
+  3. Generic data collection from different device types
 
 ## Installation
 
