@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netbox-nornir"
-version = "0.0.1"
+version = "0.1.1-beta1"
 description = ""
 authors = ["OpticoreIT <opensource@opticoreit.com>"]
 readme = "README.md"
