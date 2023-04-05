@@ -13,7 +13,6 @@ nornir-napalm = "^0.3.0"
 netutils = "^1.4.1"
 netmiko = "^4.1.2"
 nornir-netmiko = "^0"
-netbox-celery = "^0.1.1b3"
 boto3 = "^1.26.106"
 
 [tool.poetry.group.dev.dependencies]
