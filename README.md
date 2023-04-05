@@ -2,7 +2,13 @@
 
 ## Overview
 
-The Netbox Celery plugin is a Netbox plugin to provide support for celery. This plugin can be used base for any automation tasks.
+The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. OpticoreIT use this plugin as a base for network automation solutions.
+
+Main functions:
+
+  1) Nornir inventory for Netbox ORM
+  2) Generic credentials integrations
+  3) Generic data collection from different device types
 
 ## Installation
 
