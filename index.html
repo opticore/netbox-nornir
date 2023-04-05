@@ -251,9 +251,40 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         Overview
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -279,6 +310,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    Overview
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -296,6 +342,22 @@
 
 
 <h1 id="netbox-nornir-plugin">Netbox Nornir Plugin<a class="headerlink" href="#netbox-nornir-plugin" title="Permanent link">&para;</a></h1>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/opticore/netbox-nornir/main/docs/assets/netbox_nornir.png" class="logo" height="200px">
+  <br>
+  <a href="https://github.com/opticore/netbox-nornir/actions"><img src="https://github.com/opticore/netbox-nornir/actions/workflows/ci_integration.yml/badge.svg?branch=main"></a>
+  <a href="https://pypi.org/project/netbox-nornir/"><img src="https://img.shields.io/pypi/v/netbox-nornir"></a>
+  <a href="https://pypi.org/project/netbox-nornir/"><img src="https://img.shields.io/pypi/dm/netbox-nornir"></a>
+  <br>
+  An App for <a href="https://github.com/netbox-community/netbox">Netbox</a>.
+</p>
+
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
+<p>The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. OpticoreIT use this plugin as a base for network automation solutions.</p>
+<p>Main functions:</p>
+<p>1) Nornir inventory for Netbox ORM
+  2) Generic credentials integrations
+  3) Generic data collection from different device types</p>
 
 
 
