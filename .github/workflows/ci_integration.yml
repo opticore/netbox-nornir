@@ -1,0 +1,148 @@
+name: CI - GitHub Actions
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+  pull_request:
+    branches:
+      - "main"
+      - "develop"
+
+jobs:
+  bandit:
+    runs-on: "ubuntu-20.04"
+    env:
+      INVOKE_NETBOX_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Configure Poetry
+        run: poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install --only=dev
+      - name: "Linting: bandit"
+        run: "poetry run invoke bandit"
+
+  black:
+    runs-on: "ubuntu-latest"
+    env:
+      INVOKE_NETBOX_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Configure Poetry
+        run: poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install --only=dev
+      - name: "Linting: black"
+        run: "poetry run invoke black"
+
+  pylint:
+    runs-on: "ubuntu-20.04"
+    env:
+      INVOKE_NETBOX_LOCAL: "True"
+    steps:
+      - name: "Check out repository code"
+        uses: "actions/checkout@v2"
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Configure Poetry
+        run: poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install --only=dev
+      - name: "Configure local environment"
+        run: "poetry run invoke build-local-env"
+      - name: "Linting: Pylint"
+        run: "find . -type f -name '*.py' | xargs pylint"
+
+  # unittest:
+  #   runs-on: "ubuntu-20.04"
+  #   env:
+  #     INVOKE_NETBOX_LOCAL: "True"
+  #     DB_USER: "netbox"
+  #     DB_PASSWORD: "netbox"
+  #     SECRET_KEY: "1111111111111111111111111111111111111111111111111"
+  #   services:
+  #     postgres:
+  #       image: postgres:14
+  #       env:
+  #         POSTGRES_USER: netbox
+  #         POSTGRES_PASSWORD: netbox
+  #         POSTGRES_DB: netbox
+  #       ports:
+  #         - 5432:5432
+  #       options: >-
+  #         --health-cmd pg_isready
+  #         --health-interval 10s
+  #         --health-timeout 5s
+  #         --health-retries 5
+  #     redis:
+  #       image: "redis:6-alpine"
+  #       ports:
+  #         - "6379:6379"
+  #   steps:
+  #     - name: "Check out repository code"
+  #       uses: "actions/checkout@v2"
+  #     - name: Set up Python 3.9
+  #       uses: actions/setup-python@v2
+  #       with:
+  #         python-version: 3.9
+  #     - name: Install Poetry
+  #       run: pip install poetry
+  #     - name: Configure Poetry
+  #       run: poetry config virtualenvs.create false
+  #     - name: Install dependencies
+  #       run: poetry install
+  #     - name: "Configure local environment"
+  #       run: "poetry run invoke build-local-env"
+  #     - name: "Run unit tests"
+  #       run: "python ./netbox/netbox/manage.py test netbox_nornir --noinput"
+  #   needs: [
+  #     bandit,
+  #     black,
+  #     pylint,
+  #   ]
+
+  trigger_github_pages_build:
+    runs-on: "ubuntu-latest"
+    if: "github.event_name == 'push' && (github.ref == 'refs/heads/develop')"
+    steps:
+      - name: "Check out repository code"
+        uses: actions/checkout@v2
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - name: Install Poetry
+        run: pip install poetry
+      - name: Configure Poetry
+        run: poetry config virtualenvs.create false
+      - name: Install dependencies
+        run: poetry install --only=dev
+      - name: pull repo
+        run: git pull
+      - name: mkdocs-gh-build
+        run: mkdocs gh-deploy
+    needs: [
+      bandit,
+      black,
+      pylint,
+    ]
