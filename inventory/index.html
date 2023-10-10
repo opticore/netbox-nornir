@@ -9,13 +9,15 @@
       
       
       
-        <link rel="canonical" href="https://netbox-nornir.readthedocs.io/en/latest/">
+        <link rel="canonical" href="https://netbox-nornir.readthedocs.io/en/latest/inventory/">
       
       
+        <link rel="prev" href="../install/">
       
-        <link rel="next" href="install/">
       
-      <link rel="icon" href="assets/images/favicon.png">
+        <link rel="next" href="../tasks/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.5">
     
     
@@ -25,14 +27,14 @@
 
     
       
-        <title>Netbox Nornir Documentation</title>
+        <title>Inventory - Netbox Nornir Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.7a7fce14.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.7a7fce14.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.a0c5b2b5.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.a0c5b2b5.min.css">
       
       
 
@@ -48,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -79,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#netbox-nornir-plugin" class="md-skip">
+        <a href="#nornir-inventory" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +97,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Netbox Nornir Documentation" class="md-header__button md-logo" aria-label="Netbox Nornir Documentation" data-md-component="logo">
+    <a href=".." title="Netbox Nornir Documentation" class="md-header__button md-logo" aria-label="Netbox Nornir Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -114,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Overview
+              Inventory
             
           </span>
         </div>
@@ -213,7 +215,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Netbox Nornir Documentation" class="md-nav__button md-logo" aria-label="Netbox Nornir Documentation" data-md-component="logo">
+    <a href=".." title="Netbox Nornir Documentation" class="md-nav__button md-logo" aria-label="Netbox Nornir Documentation" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -242,6 +244,36 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        Install
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -254,12 +286,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Overview
+          Inventory
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="." class="md-nav__link md-nav__link--active">
-        Overview
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Inventory
       </a>
       
         
@@ -278,9 +310,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#netboxorminventory" class="md-nav__link">
+    NetboxORMInventory
   </a>
+  
+    <nav class="md-nav" aria-label="NetboxORMInventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#credentials-classes" class="md-nav__link">
+    Credentials Classes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -300,37 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="install/" class="md-nav__link">
-        Install
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="inventory/" class="md-nav__link">
-        Inventory
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="tasks/" class="md-nav__link">
+      <a href="../tasks/" class="md-nav__link">
         Tasks
       </a>
     </li>
@@ -364,9 +379,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#overview" class="md-nav__link">
-    Overview
+  <a href="#netboxorminventory" class="md-nav__link">
+    NetboxORMInventory
   </a>
+  
+    <nav class="md-nav" aria-label="NetboxORMInventory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#credentials-classes" class="md-nav__link">
+    Credentials Classes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -388,25 +416,39 @@
   
 
 
-<h1 id="netbox-nornir-plugin">Netbox Nornir Plugin<a class="headerlink" href="#netbox-nornir-plugin" title="Permanent link">&para;</a></h1>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/opticore/netbox-nornir/main/docs/assets/netbox_nornir.png" class="logo" height="200px">
-  <br>
-  <a href="https://github.com/opticore/netbox-nornir/actions"><img src="https://github.com/opticore/netbox-nornir/actions/workflows/ci_integration.yml/badge.svg?branch=main"></a>
-  <a href="https://pypi.org/project/netbox-nornir/"><img src="https://img.shields.io/pypi/v/netbox-nornir"></a>
-  <a href="https://pypi.org/project/netbox-nornir/"><img src="https://img.shields.io/pypi/dm/netbox-nornir"></a>
-  <br>
-  An App for <a href="https://github.com/netbox-community/netbox">Netbox</a>.
-</p>
-
-<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. OpticoreIT use this plugin as a base for network automation solutions.</p>
-<p>Main functions:</p>
-<ol>
-<li>Nornir inventory for Netbox ORM</li>
-<li>Generic credentials integrations</li>
-<li>Generic data collection from different device types</li>
-</ol>
+<h1 id="nornir-inventory">Nornir Inventory<a class="headerlink" href="#nornir-inventory" title="Permanent link">&para;</a></h1>
+<p>Using the <code>NetboxORMInventory</code> class inside of your Nornir initiation will allow the user to create a inventory from the Netbox ORM.</p>
+<h2 id="netboxorminventory"><code>NetboxORMInventory</code><a class="headerlink" href="#netboxorminventory" title="Permanent link">&para;</a></h2>
+<p>Arguments:</p>
+<ul>
+<li><code>queryset</code> (<code>dcim.models.Device</code>): Queryset of devices to be loaded into inventory.</li>
+<li><code>filters</code> (<code>dict</code>): A dictionary of filters to be used against the queryset.</li>
+<li><code>credentials_class</code> (<code>str</code>): Import path to be used to load credentials per <code>Device</code> object.</li>
+<li><code>credentials_params</code> (<code>dict</code>): Parameters to be used with the credentials class.</li>
+</ul>
+<h3 id="credentials-classes">Credentials Classes<a class="headerlink" href="#credentials-classes" title="Permanent link">&para;</a></h3>
+<p>Credentials classes can be dynamically imported from any Python path. This allows the user to create their own method to gather credentials from anywhere.</p>
+<p>By default a basic credentials class is set (<code>CredentialsEnvVars</code>). For each host this class gets initiated.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span> <span class="nc">CredentialsEnvVars</span><span class="p">(</span><span class="n">BaseCredentials</span><span class="p">):</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Credentials Class designed to work with Netbox ORM.</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">    This class is the default class that will return the same login and password</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="sd">    for all devices based on the values of the environment variables</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{}):</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize Credentials Class designed to work with environment variables.</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">        Args:</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd">            params ([dict], optional): Credentials Parameters</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;username&quot;</span><span class="p">,</span> <span class="n">USERNAME_ENV_VAR_NAME</span><span class="p">))</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">PASSWORD_ENV_VAR_NAME</span><span class="p">))</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">params</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;secret&quot;</span><span class="p">,</span> <span class="n">SECRET_ENV_VAR_NAME</span><span class="p">))</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">secret</span><span class="p">:</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">secret</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">password</span>
+</code></pre></div>
+<p>The example above shows the class getting initiated and setting three attributes to itself using environmental variables. The username, password and secret.</p>
 
 
 
@@ -443,10 +485,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.407015b8.min.js"></script>
+      <script src="../assets/javascripts/bundle.407015b8.min.js"></script>
       
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       

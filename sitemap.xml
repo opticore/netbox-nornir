@@ -2,7 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://netbox-nornir.readthedocs.io/en/latest/</loc>
-         <lastmod>2023-04-05</lastmod>
+         <lastmod>2023-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://netbox-nornir.readthedocs.io/en/latest/install/</loc>
+         <lastmod>2023-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://netbox-nornir.readthedocs.io/en/latest/inventory/</loc>
+         <lastmod>2023-10-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://netbox-nornir.readthedocs.io/en/latest/tasks/</loc>
+         <lastmod>2023-10-10</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
