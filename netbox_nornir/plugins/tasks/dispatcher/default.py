@@ -107,10 +107,12 @@ class NetboxNornirDriver:
 
     @staticmethod
     def get_facts(task: Task, logger, obj) -> Result:
+        """Get the latest facts from the device."""
         return NetboxNornirDriver.naplam_get(task, "facts", logger, obj)
 
     @staticmethod
     def get_environment(task: Task, logger, obj) -> Result:
+        """Get the latest environment from the device."""
         return NetboxNornirDriver.naplam_get(task, "environment", logger, obj)
 
     @staticmethod

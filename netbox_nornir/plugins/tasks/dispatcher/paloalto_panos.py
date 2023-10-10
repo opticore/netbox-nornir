@@ -1,5 +1,5 @@
 """Palo Alto PANOS driver."""
-import xml.dom.minidom
+import xml.dom.minidom # nosec
 
 import requests
 from nornir.core.task import Result, Task
