@@ -26,8 +26,12 @@ class NetboxNornirDriver(DefaultNetboxNornirDriver):
             f"Executing get_config for {task.host.name} on {task.host.platform}",
             grouping=task.host.name,
         )
+        if task.host.port == 22:
+            port = 443
+        else:
+            port = task.host.port
         response = session.get(
-            f"https://{task.host.hostname}/api/v2/monitor/system/config/backup?scope=global&access_token={task.host.data['key']}",
+            f"https://{task.host.hostname}:{port}/api/v2/monitor/system/config/backup?scope=global&access_token={task.host.data['key']}",
             verify=False,
             timeout=10,
         )

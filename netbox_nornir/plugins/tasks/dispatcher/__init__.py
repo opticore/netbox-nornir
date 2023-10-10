@@ -8,6 +8,7 @@ from nornir.core.exceptions import NornirSubTaskError
 from nornir.core.task import Result, Task
 from netbox_nornir.exceptions import NornirNetboxException
 
+
 LOGGER = logging.getLogger(__name__)
 
 _DEFAULT_DRIVERS_MAPPING = {

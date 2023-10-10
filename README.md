@@ -12,7 +12,7 @@
 
 ## Overview
 
-The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. OpticoreIT use this plugin as a base for network automation solutions.
+The Netbox Nornir plugin is a shim layer for OpticoreIT netbox plugins. OpticoreIT use this plugin as a base for network automation solutions. The plugin is based on a [nautobot-nornir](https://github.com/nautobot/nautobot-plugin-nornir) created by NTC.
 
 Main functions:
 

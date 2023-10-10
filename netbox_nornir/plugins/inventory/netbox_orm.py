@@ -147,6 +147,7 @@ class NetboxORMInventory:
 
         for device in self.queryset:
             host = self.create_host(device, cred, {})
+
             hosts[device.name] = set_host(
                 data=host["data"],
                 name=host["name"],
@@ -177,6 +178,11 @@ class NetboxORMInventory:
             else:
                 host["hostname"] = device.name
         host["name"] = device.name
+
+        if device.custom_field_data.get("access_port"):
+            host["port"] = device.custom_field_data["access_port"]
+        else:
+            host["port"] = 22
 
         if not device.platform:
             raise NornirNetboxException(f"Platform missing from device {device.name}, preemptively failed.")

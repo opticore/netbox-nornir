@@ -1,5 +1,5 @@
 """Palo Alto PANOS driver."""
-import xml.dom.minidom  # nosec
+import xml.dom.minidom
 
 import requests
 from nornir.core.task import Result, Task
@@ -28,12 +28,16 @@ class NetboxNornirDriver(DefaultNetboxNornirDriver):
             f"Executing get_config for {task.host.name} on {task.host.platform}",
             grouping=task.host.name,
         )
+        if task.host.port == 22:
+            port = 443
+        else:
+            port = task.host.port
         response = session.get(
-            f"https://{task.host.hostname}/api/?type=export&category=configuration&key={task.host.data['key']}",
+            f"https://{task.host.hostname}:{port}/api/?type=export&category=configuration&key={task.host.data['key']}",
             verify=False,
             timeout=10,
         )
         response.raise_for_status()
-        xml_response = xml.dom.minidom.parseString(response.text)  # nosec
+        xml_response = xml.dom.minidom.parseString(response.text)
         xml_pretty = xml_response.toprettyxml()
         return Result(host=task.host, result={"config": xml_pretty})
