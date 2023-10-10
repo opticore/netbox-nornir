@@ -71,27 +71,27 @@ class NetboxNornirDriver:
         return Result(host=task.host, result={"config": running_config})
 
     @staticmethod
-    def get_facts(task: Task, logger, obj) -> Result:
+    def naplam_get(task: Task, method, logger, obj) -> Result:
         """Get the latest facts from the device.
         Args:
             task (Task): Nornir Task.
             logger (NornirLogger): Custom NornirLogger object to reflect job results (via Netbox Jobs) and Python logger.
             obj (Device): A Netbox Device Django ORM object instance.
         Returns:
-            Result: Nornir Result object with a dict as a result containing the facts
-                { "facts: <facts> }
+            Result: Nornir Result object with a dict as a result containing the method
+                { "method: <method> }
         """
         logger.log_debug(
-            f"Executing get_facts for {task.host.name} on {task.host.platform}",
+            f"Executing get_{method} for {task.host.name} on {task.host.platform}",
             grouping=task.host.name,
         )
         try:
-            results = task.run(task=napalm_get, getters=["facts"])
+            results = task.run(task=napalm_get, getters=[method])
         except NornirSubTaskError as exc:
             traceback_lines = exc.result[0].result.splitlines()
             logger.log_failure(
                 obj,
-                f"`get_facts` method failed with an unexpected issue: `{traceback_lines[-1]}`",
+                f"`get_{method}` method failed with an unexpected issue: `{traceback_lines[-1]}`",
                 grouping=task.host.name,
             )
             for traceback_line in traceback_lines:
@@ -100,10 +100,20 @@ class NetboxNornirDriver:
                     grouping=task.host.name,
                 )
             raise NornirNetboxException(
-                f"`get_facts` method failed with an unexpected issue: `{traceback_lines[-1]}`"
+                f"`get_{method}` method failed with an unexpected issue: `{traceback_lines[-1]}`"
             ) from exc
         facts = results[0].result.get("facts", None)
-        return Result(host=task.host, result={"facts": facts})
+        return Result(host=task.host, result={method: facts})
+
+    @staticmethod
+    def get_facts(task: Task, logger, obj) -> Result:
+        """Get the latest facts from the device."""
+        return NetboxNornirDriver.naplam_get(task, "facts", logger, obj)
+
+    @staticmethod
+    def get_environment(task: Task, logger, obj) -> Result:
+        """Get the latest environment from the device."""
+        return NetboxNornirDriver.naplam_get(task, "environment", logger, obj)
 
     @staticmethod
     def get_interfaces(task: Task, logger, obj) -> Result:
@@ -216,8 +226,46 @@ class NetmikoNetboxNornirDriver(NetboxNornirDriver):
 
     @staticmethod
     def get_facts(task: Task, logger, obj) -> Result:
+        """Get the latest facts from the device using Netmiko.
+
+        For overriding this function, the return needs to match the following format:
+            {
+                'uptime': (int),
+                'vendor': (str),
+                'os_version': (str),
+                'serial_number': (str),
+                'model': (str),
+                'hostname': (str),
+                'fqdn': (str),
+                'interface_list': (list[str]),
+            }
+        This should match napalm's return object. The function should also set `self.facts` to the return value.
+        """
         return NotImplementedError("get_facts is not implemented for NetmikoNetboxNornirDriver")
 
     @staticmethod
     def get_interfaces(task: Task, logger, obj) -> Result:
+        """Get the latest interface IP addresses from the device using Netmiko.
+
+        For overriding this function, the return needs to match the following format:
+            {
+                '{interface_name}': {
+                    'is_up': (bool),
+                    'is_enabled': (bool),
+                    'description': (str),
+                    'last_flapped': (float),
+                    'mac_address': (str),
+                    'speed': (int),
+                    'mtu': (int),
+                    'ipv4': {
+                        '{ipv4_address}': {
+                            'prefix_length': (int),
+                        },
+                        ...
+                    },
+                },
+                ...
+            }
+        This should match napalm's return object. The function should also set `self.interfaces` to the return value.
+        """
         return NotImplementedError("get_interfaces is not implemented for NetmikoNetboxNornirDriver")

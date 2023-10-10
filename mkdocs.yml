@@ -60,3 +60,6 @@ plugins:
 
 nav:
   - Overview: "index.md"
+  - Install: "install.md"
+  - Inventory: "inventory.md"
+  - Tasks: "tasks.md"
