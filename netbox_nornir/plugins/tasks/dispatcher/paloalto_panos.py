@@ -1,5 +1,5 @@
 """Palo Alto PANOS driver."""
-import xml.dom.minidom # nosec
+import xml.dom.minidom  # nosec
 
 import requests
 from nornir.core.task import Result, Task
@@ -38,6 +38,6 @@ class NetboxNornirDriver(DefaultNetboxNornirDriver):
             timeout=10,
         )
         response.raise_for_status()
-        xml_response = xml.dom.minidom.parseString(response.text)
-        xml_pretty = xml_response.toprettyxml()
+        xml_response = xml.dom.minidom.parseString(response.text)  # nosec
+        xml_pretty = xml_response.toprettyxml()  # nosec
         return Result(host=task.host, result={"config": xml_pretty})

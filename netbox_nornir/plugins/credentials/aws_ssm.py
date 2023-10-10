@@ -82,7 +82,7 @@ class CredentialsAwsSsm(BaseCredentials):
         ]
         return self.client.get_parameters(Names=parameter_names, WithDecryption=True)["Parameters"]
 
-    def get_device_creds(self, device, **kwargs):  # pylint: disable=signature-differ
+    def get_device_creds(self, device, **kwargs):  # pylint: disable=signature-differs
         """Get device credentials.
 
         Args:
